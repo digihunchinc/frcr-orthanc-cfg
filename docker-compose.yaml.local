@@ -1,0 +1,46 @@
+services:
+  nginx-proxy:
+    image: $NGINX_DOCKER_IMAGE
+    container_name: nginx-proxy
+    depends_on: 
+      - orthanc-service
+    restart: unless-stopped
+    ports: 
+      - 443:443
+      - 11112:11112
+    volumes:
+      - ./$SITE_KEY_CERT_FILE:/usr/local/nginx/conf/site.pem:ro
+      - ./config/nginx/:/etc/nginx/:ro
+
+  orthanc-service:
+    image: $ORTHANC_DOCKER_IMAGE
+    container_name: orthanc-backend
+    command: /etc/orthanc/
+    volumes:
+      - ./data/storage-orthanc:/var/lib/orthanc/data
+      - ./config/orthanc/:/etc/orthanc/
+    depends_on: 
+      - orthanc-db
+    restart: unless-stopped
+    environment:
+      VERBOSE_ENABLED: $VERBOSE_ENABLED
+      ORG_NAME: $ORG_NAME
+      DB_HOST: $ORTHANC_DB_HOST
+      DB_NAME: $ORTHANC_DB_NAME
+      DB_USERNAME: $ORTHANC_DB_USERNAME
+      DB_PASSWORD: $ORTHANC_DB_PASSWORD
+      PUBLIC_OHIF_ROOT: "https://${SITE_NAME}/orthanc/ohif/"
+    healthcheck:
+      disable: true 
+
+  orthanc-db:
+    image: $POSTGRESQL_DOCKER_IMAGE
+    restart: unless-stopped
+    container_name: orthanc-db
+    shm_size: 128mb
+    volumes: 
+      - ./data/pgdata-orthanc:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: $ORTHANC_DB_NAME
+      POSTGRES_USER: $ORTHANC_DB_USERNAME
+      POSTGRES_PASSWORD: $ORTHANC_DB_PASSWORD

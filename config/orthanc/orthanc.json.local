@@ -1,0 +1,65 @@
+{
+    "Name" : "${ORG_NAME}",
+    "RemoteAccessAllowed" : true,
+    "SslEnabled" : false,
+    "StableAge" : 60,
+    "DicomAet": "ORTHANC_DCM",
+    "DicomPort": 4242,
+    "DicomAssociationCloseDelay" : 5,
+    "DicomAlwaysAllowEcho": true,
+    "DicomAlwaysAllowStore": true,
+    "DicomAlwaysAllowFind": true,
+    "DicomAlwaysAllowGet": false,
+    "DicomCheckCalledAet": false,
+    "StorageCompression" : true,
+    "LimitFindResults": 100,
+    "LimitFindInstances": 200,
+    "StorageAccessOnFind": "Never",
+    "SaveJobs": true, 
+    "TcpNoDelay": true, 
+    "KeepAlive": true,
+    "IngestTranscodingOfUncompressed" : true,
+    "IngestTranscodingOfCompressed" : false,
+    "IngestTranscoding" : "1.2.840.10008.1.2.4.80",
+    "OrthancExplorer2": {
+        "Enable": true,
+        "IsDefaultUI": true,
+        "UiOptions": {
+            "AvailableLanguages": ["en","fr"],
+            "EnableOpenInOhifViewer3": true,
+            "OhifViewer3PublicRoot": "${PUBLIC_OHIF_ROOT}"
+        }
+    },
+    "StorageDirectory": "/var/lib/orthanc/data",
+    "PostgreSQL" : {
+    	"EnableIndex" : true,
+    	"EnableStorage" : false,
+    	"Host" : "${DB_HOST}",
+    	"Port" : 5432,
+    	"Database" : "${DB_NAME}",
+    	"Username" : "${DB_USERNAME}",
+    	"Password" : "${DB_PASSWORD}",
+        "IndexConnectionsCount" : 10,
+        "TransactionMode" : "ReadCommitted",
+    	"EnableSsl" : false,
+    	"Lock" : false
+    },
+    "AuthenticationEnabled": false,
+    "DicomWeb" : {
+        "Enable" : true,
+        "EnableWado" : true,
+        "Ssl" : false
+    },
+    "OHIF": {
+        "DataSource" : "dicom-web",
+        "UserConfiguration" : "/etc/orthanc/ohif.js",
+        "RouterBasename" : "/orthanc/ohif/"
+    },
+    "Plugins": [
+      "/usr/share/orthanc/plugins-available/libOrthancPostgreSQLIndex.so",
+      "/usr/share/orthanc/plugins-available/libOrthancExplorer2.so",
+      "/usr/share/orthanc/plugins-available/libOrthancAuthorization.so",
+      "/usr/share/orthanc/plugins-available/libOrthancDicomWeb.so",
+      "/usr/share/orthanc/plugins-available/libOrthancOHIF.so"
+    ]
+}
