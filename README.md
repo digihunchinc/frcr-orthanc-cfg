@@ -65,8 +65,5 @@ If the docker daemon is configured to push logs to Cloud Watch, you can find out
 
 To analyze network traffic, if the test host has wiresharek, you may display web traffic using wireshark:
 ```sh
-docker exec authorization-service tcpdump -pi eth0 -w - -s0 dst port 8000 or src port 8000| wireshark -k -i -
+docker exec orthanc-backend tcpdump -pi eth0 -w - -s0 dst port 8042 or src port 8042 | wireshark -k -i -
 ```
-
-## Custom Implementation
-If you have a custom implementation, fork this repo and implement the customization. Then reference the fork from the input variable of the Terraform template in Orthweb.
