@@ -1,4 +1,8 @@
 window.config = {
   extensions: [],
-  modes: []
+  modes: [],
+  showStudyList: false,
+  disableEditing: true,
+  investigationalUseDialog: 'never',
+  studyListFunctionsEnabled: false,
 }

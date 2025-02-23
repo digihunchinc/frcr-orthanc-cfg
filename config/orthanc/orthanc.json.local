@@ -55,11 +55,18 @@
         "UserConfiguration" : "/etc/orthanc/ohif.js",
         "RouterBasename" : "/orthanc/ohif/"
     },
+    "StoneWebViewer" : {
+        "PrintEnabled" : false,
+        "DownloadAsJpegEnabled" : false,
+        "ShowInfoPanelAtStartup": "Never",
+        "ShowNotForDiagnosticUsageDisclaimer": false
+    },
     "Plugins": [
       "/usr/share/orthanc/plugins-available/libOrthancPostgreSQLIndex.so",
       "/usr/share/orthanc/plugins-available/libOrthancExplorer2.so",
       "/usr/share/orthanc/plugins-available/libOrthancAuthorization.so",
       "/usr/share/orthanc/plugins-available/libOrthancDicomWeb.so",
-      "/usr/share/orthanc/plugins-available/libOrthancOHIF.so"
+      "/usr/share/orthanc/plugins-available/libOrthancOHIF.so",
+      "/usr/share/orthanc/plugins-available/libStoneWebViewer.so"
     ]
 }
