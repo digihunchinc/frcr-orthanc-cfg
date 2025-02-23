@@ -51,9 +51,10 @@
         "Ssl" : false
     },
     "OHIF": {
-        "DataSource" : "dicom-web",
+        "DataSource" : "dicom-json",
         "UserConfiguration" : "/etc/orthanc/ohif.js",
-        "RouterBasename" : "/orthanc/ohif/"
+        "RouterBasename" : "/orthanc/ohif/",
+        "Preload": false
     },
     "StoneWebViewer" : {
         "PrintEnabled" : false,
