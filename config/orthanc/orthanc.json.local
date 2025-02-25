@@ -27,7 +27,15 @@
         "UiOptions": {
             "AvailableLanguages": ["en","fr"],
             "EnableOpenInOhifViewer3": true,
-            "OhifViewer3PublicRoot": "${PUBLIC_OHIF_ROOT}"
+            "OhifViewer3PublicRoot": "${PUBLIC_OHIF_ROOT}",
+            "ViewersIcons": {
+              "stone-webviewer": "bi bi-eye-fill",
+              "ohif": "bi bi-eye"
+            },
+            "ViewersOrdering" : [
+                "stone-webviewer",
+                "ohif"
+            ]
         }
     },
     "StorageDirectory": "/var/lib/orthanc/data",
